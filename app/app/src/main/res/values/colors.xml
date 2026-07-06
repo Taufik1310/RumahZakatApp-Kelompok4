@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Warna Utama Rumah Zakat -->
+    <color name="orange_primary">#F26522</color>
+    <color name="orange_dark">#D95319</color>
+
+    <!-- Warna Pendukung -->
+    <color name="white">#FFFFFF</color>
+    <color name="bg_light">#F8F9FA</color>
+    <color name="text_dark">#212121</color>
+    <color name="text_gray">#757575</color>
+    <color name="error_red">#D32F2F</color>
+</resources>

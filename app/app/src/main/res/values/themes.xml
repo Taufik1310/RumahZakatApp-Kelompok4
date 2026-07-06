@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Tema dasar aplikasi -->
+    <style name="Base.Theme.RumahZakatApp" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Warna utama -->
+        <item name="colorPrimary">@color/orange_primary</item>
+        <item name="colorPrimaryVariant">@color/orange_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Warna latar belakang -->
+        <item name="android:windowBackground">@color/bg_light</item>
+
+        <!-- Warna Status Bar paling atas -->
+        <item name="android:statusBarColor">@color/orange_dark</item>
+    </style>
+
+    <style name="Theme.RumahZakatApp" parent="Base.Theme.RumahZakatApp" />
+</resources>
