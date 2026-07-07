@@ -25,6 +25,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".DonasiActivity" />
         <activity android:name=".BayarDonasiActivity" />
+        <activity android:name=".ZakatActivity" />
     </application>
 
 </manifest>

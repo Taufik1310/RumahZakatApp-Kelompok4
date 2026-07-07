@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnZakat.setOnClickListener {
-//            startActivity(Intent(this, ZakatActivity::class.java))
+            startActivity(Intent(this, ZakatActivity::class.java))
         }
 
         btnKurban.setOnClickListener {

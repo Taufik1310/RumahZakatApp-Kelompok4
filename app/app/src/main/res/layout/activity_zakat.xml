@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/btnBackZakat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⬅"
+            android:textSize="24sp"
+            android:textColor="@color/text_dark"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kalkulator Zakat"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hitung Zakat Penghasilan"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/orange_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Masukkan total pendapatan kotor Anda per bulan untuk mengetahui kewajiban zakat (2,5%)."
+                android:textSize="14sp"
+                android:textColor="@color/text_gray"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/etPenghasilanZakat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Contoh: 8000000"
+                android:inputType="number"
+                android:padding="16dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="16dp"/>
+
+            <Button
+                android:id="@+id/btnHitungZakat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/orange_primary"
+                android:text="Hitung Kewajiban"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Area Hasil Perhitungan -->
+            <TextView
+                android:id="@+id/tvHasilZakat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@color/text_dark"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Tombol Tunaikan (Hanya muncul jika >= Nishab) -->
+            <Button
+                android:id="@+id/btnTunaikanZakat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/orange_primary"
+                android:textColor="@color/white"
+                android:text="Tunaikan Zakat Sekarang"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
