@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 3 // Naikkan versi database
         private const val DATABASE_NAME = "RumahZakat.db"
 
         // Tabel User
@@ -20,7 +20,6 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         // Tabel Donasi (UC-01)
         private const val TABLE_DONASI = "tb_donasi"
-        private const val COL_DONASI_ID = "donasi_id"
         private const val COL_DONASI_EMAIL = "email_user"
         private const val COL_DONASI_KAMPANYE = "kampanye"
         private const val COL_DONASI_NOMINAL = "nominal"
@@ -28,110 +27,83 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
 
         // Tabel Zakat (UC-02)
         private const val TABLE_ZAKAT = "tb_zakat"
-        private const val COL_ZAKAT_ID = "zakat_id"
         private const val COL_ZAKAT_EMAIL = "email_user"
         private const val COL_ZAKAT_PENGHASILAN = "penghasilan"
         private const val COL_ZAKAT_NOMINAL = "nominal_zakat"
+
+        // Tabel Kurban (UC-03)
+        private const val TABLE_KURBAN = "tb_kurban"
+        private const val COL_KURBAN_ID = "kurban_id"
+        private const val COL_KURBAN_EMAIL = "email_user"
+        private const val COL_KURBAN_JENIS = "jenis_hewan" // Misal: "Kambing", "Sapi"
+        private const val COL_KURBAN_PRODUK = "tipe_produk" // "Superqurban" / "Penebaran Langsung"
+        private const val COL_KURBAN_STATUS = "status" // 1: Pengadaan, 2: Disembelih, 3: Dikirim
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        // Create Tabel User
-        val createTableUser = ("CREATE TABLE $TABLE_USER ("
-                + "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "$COLUMN_NAMA TEXT,"
-                + "$COLUMN_EMAIL TEXT,"
-                + "$COLUMN_PASSWORD TEXT)")
-        db.execSQL(createTableUser)
+        db.execSQL("CREATE TABLE $TABLE_USER ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_NAMA TEXT, $COLUMN_EMAIL TEXT, $COLUMN_PASSWORD TEXT)")
+        db.execSQL("CREATE TABLE $TABLE_DONASI (donasi_id INTEGER PRIMARY KEY AUTOINCREMENT, $COL_DONASI_EMAIL TEXT, $COL_DONASI_KAMPANYE TEXT, $COL_DONASI_NOMINAL REAL, $COL_DONASI_ANONIM INTEGER)")
+        db.execSQL("CREATE TABLE $TABLE_ZAKAT (zakat_id INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ZAKAT_EMAIL TEXT, $COL_ZAKAT_PENGHASILAN REAL, $COL_ZAKAT_NOMINAL REAL)")
 
-        // Create Tabel Donasi
-        val createTableDonasi = ("CREATE TABLE $TABLE_DONASI ("
-                + "$COL_DONASI_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "$COL_DONASI_EMAIL TEXT,"
-                + "$COL_DONASI_KAMPANYE TEXT,"
-                + "$COL_DONASI_NOMINAL REAL,"
-                + "$COL_DONASI_ANONIM INTEGER)")
-        db.execSQL(createTableDonasi)
-
-        // Create Tabel Zakat
-        val createTableZakat = ("CREATE TABLE $TABLE_ZAKAT ("
-                + "$COL_ZAKAT_ID INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + "$COL_ZAKAT_EMAIL TEXT,"
-                + "$COL_ZAKAT_PENGHASILAN REAL,"
-                + "$COL_ZAKAT_NOMINAL REAL)")
-        db.execSQL(createTableZakat)
+        // Buat Tabel Kurban
+        db.execSQL("CREATE TABLE $TABLE_KURBAN ($COL_KURBAN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_KURBAN_EMAIL TEXT, $COL_KURBAN_JENIS TEXT, $COL_KURBAN_PRODUK TEXT, $COL_KURBAN_STATUS INTEGER)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USER")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_DONASI")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_ZAKAT")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_KURBAN")
         onCreate(db)
     }
 
-    // --- FUNGSI AUTENTIKASI ---
+    // -- FUNGSI USER, DONASI, ZAKAT (Sama seperti sebelumnya) --
     fun insertUser(nama: String, email: String, password: String): Boolean {
         val db = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(COLUMN_NAMA, nama)
-        cv.put(COLUMN_EMAIL, email)
-        cv.put(COLUMN_PASSWORD, password)
-        val result = db.insert(TABLE_USER, null, cv)
-        db.close()
-        return result != -1L
+        val cv = ContentValues().apply { put(COLUMN_NAMA, nama); put(COLUMN_EMAIL, email); put(COLUMN_PASSWORD, password) }
+        return db.insert(TABLE_USER, null, cv) != -1L
     }
-
-    fun checkUser(email: String, password: String): Boolean {
-        val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM $TABLE_USER WHERE $COLUMN_EMAIL = ? AND $COLUMN_PASSWORD = ?", arrayOf(email, password))
+    fun checkUser(e: String, p: String): Boolean {
+        val cursor = this.readableDatabase.rawQuery("SELECT * FROM $TABLE_USER WHERE $COLUMN_EMAIL = ? AND $COLUMN_PASSWORD = ?", arrayOf(e, p))
         val count = cursor.count
         cursor.close()
         return count > 0
     }
-
-    fun getUserName(email: String): String {
-        val db = this.readableDatabase
+    fun getUserName(e: String): String {
         var nama = "Donatur"
-        val cursor = db.rawQuery("SELECT $COLUMN_NAMA FROM $TABLE_USER WHERE $COLUMN_EMAIL = ?", arrayOf(email))
-        if (cursor.moveToFirst()) {
-            nama = cursor.getString(0)
-        }
+        val cursor = this.readableDatabase.rawQuery("SELECT $COLUMN_NAMA FROM $TABLE_USER WHERE $COLUMN_EMAIL = ?", arrayOf(e))
+        if (cursor.moveToFirst()) nama = cursor.getString(0)
         cursor.close()
         return nama
     }
-
-    // --- FUNGSI UC-01 DONASI ---
-    fun insertDonasi(email: String, kampanye: String, nominal: Double, isAnonim: Int): Boolean {
-        val db = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(COL_DONASI_EMAIL, email)
-        cv.put(COL_DONASI_KAMPANYE, kampanye)
-        cv.put(COL_DONASI_NOMINAL, nominal)
-        cv.put(COL_DONASI_ANONIM, isAnonim)
-        val result = db.insert(TABLE_DONASI, null, cv)
-        db.close()
-        return result != -1L
+    fun insertDonasi(e: String, k: String, n: Double, a: Int): Boolean {
+        val cv = ContentValues().apply { put(COL_DONASI_EMAIL, e); put(COL_DONASI_KAMPANYE, k); put(COL_DONASI_NOMINAL, n); put(COL_DONASI_ANONIM, a) }
+        return this.writableDatabase.insert(TABLE_DONASI, null, cv) != -1L
     }
-
-    fun getTotalDonasi(email: String): Double {
-        val db = this.readableDatabase
+    fun getTotalDonasi(e: String): Double {
         var total = 0.0
-        val cursor = db.rawQuery("SELECT SUM($COL_DONASI_NOMINAL) FROM $TABLE_DONASI WHERE $COL_DONASI_EMAIL = ?", arrayOf(email))
-        if (cursor.moveToFirst()) {
-            total = cursor.getDouble(0)
-        }
+        val cursor = this.readableDatabase.rawQuery("SELECT SUM($COL_DONASI_NOMINAL) FROM $TABLE_DONASI WHERE $COL_DONASI_EMAIL = ?", arrayOf(e))
+        if (cursor.moveToFirst()) total = cursor.getDouble(0)
         cursor.close()
         return total
     }
+    fun insertZakat(e: String, p: Double, n: Double): Boolean {
+        val cv = ContentValues().apply { put(COL_ZAKAT_EMAIL, e); put(COL_ZAKAT_PENGHASILAN, p); put(COL_ZAKAT_NOMINAL, n) }
+        return this.writableDatabase.insert(TABLE_ZAKAT, null, cv) != -1L
+    }
 
-    // --- FUNGSI UC-02 ZAKAT ---
-    fun insertZakat(email: String, penghasilan: Double, nominalZakat: Double): Boolean {
+    // --- FUNGSI BARU UNTUK UC-03 (KURBAN) ---
+    // Fungsi simulasi: Membuat data kurban otomatis saat user mengecek menu
+    fun generateDummyKurban(email: String) {
         val db = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(COL_ZAKAT_EMAIL, email)
-        cv.put(COL_ZAKAT_PENGHASILAN, penghasilan)
-        cv.put(COL_ZAKAT_NOMINAL, nominalZakat)
-        val result = db.insert(TABLE_ZAKAT, null, cv)
-        db.close()
-        return result != -1L
+        // Cek apakah sudah ada datanya agar tidak ganda
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_KURBAN WHERE $COL_KURBAN_EMAIL = ?", arrayOf(email))
+        if (cursor.count == 0) {
+            val cv1 = ContentValues().apply { put(COL_KURBAN_EMAIL, email); put(COL_KURBAN_JENIS, "1 Ekor Kambing"); put(COL_KURBAN_PRODUK, "Superqurban"); put(COL_KURBAN_STATUS, 2) }
+            val cv2 = ContentValues().apply { put(COL_KURBAN_EMAIL, email); put(COL_KURBAN_JENIS, "1/7 Sapi"); put(COL_KURBAN_PRODUK, "Penebaran Langsung"); put(COL_KURBAN_STATUS, 1) }
+            db.insert(TABLE_KURBAN, null, cv1)
+            db.insert(TABLE_KURBAN, null, cv2)
+        }
+        cursor.close()
     }
 }

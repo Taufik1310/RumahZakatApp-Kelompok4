@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnKurban.setOnClickListener {
-            Toast.makeText(this, "Fitur Superqurban (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LacakKurbanActivity::class.java))
         }
 
         cvTataKelola.setOnClickListener {
@@ -81,8 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         navPenyaluran.setOnClickListener {
-            // Nanti akan mengarah ke UC-03 Pelacakan Penyaluran Kurban/Donasi
-            Toast.makeText(this, "Fitur Lacak Penyaluran (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, LacakKurbanActivity::class.java))
         }
 
         navProfil.setOnClickListener {

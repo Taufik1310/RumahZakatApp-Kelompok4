@@ -26,6 +26,8 @@
         <activity android:name=".DonasiActivity" />
         <activity android:name=".BayarDonasiActivity" />
         <activity android:name=".ZakatActivity" />
+        <activity android:name=".LacakKurbanActivity" />
+        <activity android:name=".DetailKurbanActivity" />
     </application>
 
 </manifest>
