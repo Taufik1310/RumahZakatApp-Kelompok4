@@ -38,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         val btnZakat = findViewById<Button>(R.id.btnMenuZakat)
         val btnBansos = findViewById<Button>(R.id.btnMenuBansos)
 
+        val btnDonasiSaya = findViewById<Button>(R.id.btnDonasiSayaDashboard)
+
         // Binding CardView "Tata Kelola Lembaga" (UC-05)
         val cvTataKelola = findViewById<CardView>(R.id.cvTataKelola)
 
@@ -71,6 +73,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, TransparansiActivity::class.java))
         }
 
+        btnDonasiSaya.setOnClickListener {
+            startActivity(Intent(this, RiwayatDonasiActivity::class.java))
+        }
+
         // ----------------------------------------------------
         // FUNGSI KLIK BOTTOM NAVIGATION
         // ----------------------------------------------------
@@ -90,8 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         navProfil.setOnClickListener {
-            // Nanti bisa untuk fitur Logout
-            Toast.makeText(this, "Fitur Profil Pengguna (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, ProfilActivity::class.java))
         }
     }
 }

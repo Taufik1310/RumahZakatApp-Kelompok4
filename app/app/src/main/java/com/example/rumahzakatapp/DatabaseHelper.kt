@@ -64,6 +64,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         onCreate(db)
     }
 
+    data class RiwayatDonasi(val kampanye: String, val nominal: Double, val isAnonim: Int)
+
     // -- FUNGSI USER, DONASI, ZAKAT (Sama seperti sebelumnya) --
     fun insertUser(nama: String, email: String, password: String): Boolean {
         val db = this.writableDatabase
@@ -123,5 +125,23 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             put(COL_BANSOS_STATUS, status)
         }
         return this.writableDatabase.insert(TABLE_BANSOS, null, cv) != -1L
+    }
+
+    fun getRiwayatDonasi(email: String): List<RiwayatDonasi> {
+        val list = mutableListOf<RiwayatDonasi>()
+        val db = this.readableDatabase
+        // Mengambil data berdasarkan email dan diurutkan dari yang terbaru (DESC)
+        val cursor = db.rawQuery("SELECT kampanye, nominal, is_anonim FROM $TABLE_DONASI WHERE $COL_DONASI_EMAIL = ? ORDER BY donasi_id DESC", arrayOf(email))
+
+        if (cursor.moveToFirst()) {
+            do {
+                val kampanye = cursor.getString(0)
+                val nominal = cursor.getDouble(1)
+                val isAnonim = cursor.getInt(2)
+                list.add(RiwayatDonasi(kampanye, nominal, isAnonim))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return list
     }
 }

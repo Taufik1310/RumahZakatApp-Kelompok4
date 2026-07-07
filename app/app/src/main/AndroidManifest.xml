@@ -30,6 +30,8 @@
         <activity android:name=".DetailKurbanActivity" />
         <activity android:name=".BansosActivity" />
         <activity android:name=".TransparansiActivity" />
+        <activity android:name=".RiwayatDonasiActivity" />
+        <activity android:name=".ProfilActivity" />
     </application>
 
 </manifest>
