@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         cvTataKelola.setOnClickListener {
-            Toast.makeText(this, "Laporan Transparansi (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, TransparansiActivity::class.java))
         }
 
         // ----------------------------------------------------
