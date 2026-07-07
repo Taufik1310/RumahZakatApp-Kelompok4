@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -41,63 +42,25 @@
             android:orientation="vertical">
 
             <!-- Tahap 1: Pengadaan -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="✅ Tahap 1: Pengadaan &amp; Kesehatan"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:textSize="16sp"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hewan kurban telah lolos uji dokter hewan (veteriner) dan berada di kandang karantina."
-                android:textColor="@color/text_gray"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="24dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 1: Pengadaan &amp; Kesehatan" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
+            </LinearLayout>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hewan kurban telah lolos uji dokter hewan dan berada di kandang." android:textColor="@color/text_gray" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
 
             <!-- Tahap 2: Penyembelihan -->
-            <TextView
-                android:id="@+id/tvStatusTahap2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="⏳ Tahap 2: Proses Penyembelihan"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:textSize="16sp"/>
-
-            <!-- EXCEPTION 5E: Pesan Jaringan -->
-            <TextView
-                android:id="@+id/tvPesanDokumentasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hewan Anda telah disembelih secara sah. Dokumentasi visual sedang diproses karena kendala jaringan di lokasi."
-                android:textColor="@color/error_red"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="24dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:id="@+id/ivIconTahap2" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_pending" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
+                <TextView android:id="@+id/tvStatusTahap2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 2: Proses Penyembelihan" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
+            </LinearLayout>
+            <TextView android:id="@+id/tvPesanDokumentasi" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
 
             <!-- Tahap 3: Logistik / Penebaran -->
-            <TextView
-                android:id="@+id/tvStatusTahap3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="📦 Tahap 3: Pelacakan Logistik"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"
-                android:textSize="16sp"/>
-
-            <!-- EXCEPTION 6E ATAU ALTERNATE FLOW 6A -->
-            <TextView
-                android:id="@+id/tvPesanLogistik"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Data pelacakan kurir sedang dalam pemeliharaan."
-                android:textColor="@color/orange_primary"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="24dp"/>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:id="@+id/ivIconTahap3" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_kurban" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
+                <TextView android:id="@+id/tvStatusTahap3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 3: Pelacakan Logistik" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
+            </LinearLayout>
+            <TextView android:id="@+id/tvPesanLogistik" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
 
         </LinearLayout>
     </ScrollView>

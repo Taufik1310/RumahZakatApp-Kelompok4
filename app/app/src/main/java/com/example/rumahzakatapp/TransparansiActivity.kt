@@ -22,6 +22,8 @@ class TransparansiActivity : AppCompatActivity() {
         val btnUnduh = findViewById<Button>(R.id.btnUnduhLaporan)
         val btnShare = findViewById<Button>(R.id.btnShareLaporan)
 
+        val ivIconStatus = findViewById<android.widget.ImageView>(R.id.ivIconStatusLaporan)
+
         btnBack.setOnClickListener { finish() }
 
         // Fungsi bantuan untuk reset warna tombol tahun
@@ -45,7 +47,13 @@ class TransparansiActivity : AppCompatActivity() {
             btn.backgroundTintList = getColorStateList(R.color.orange_primary)
             btn.setTextColor(resources.getColor(R.color.white))
 
-            tvStatusLaporan.text = "✅ Dokumen Audit Laporan Tahunan Terintegrasi $year telah disahkan oleh KAP. Siap diunduh."
+            btnUnduh.isEnabled = true
+            btnUnduh.backgroundTintList = getColorStateList(R.color.orange_primary)
+
+            ivIconStatus.setImageResource(R.drawable.ic_check_circle)
+            ivIconStatus.setColorFilter(resources.getColor(R.color.orange_primary))
+
+            tvStatusLaporan.text = "Dokumen Audit Laporan Tahunan Terintegrasi $year telah disahkan oleh KAP. Siap diunduh."
             tvStatusLaporan.setTextColor(resources.getColor(R.color.text_dark))
 
             btnUnduh.isEnabled = true
@@ -66,7 +74,13 @@ class TransparansiActivity : AppCompatActivity() {
             btnUnduh.backgroundTintList = getColorStateList(android.R.color.darker_gray)
 
             // Pesan peringatan (Sesuai dokumen OOAD Exceptional 7E)
-            tvStatusLaporan.text = "⚠️ Dokumen dalam tahap audit eksternal Kantor Akuntan Publik (KAP), estimasi rilis: Kuartal 1 Tahun 2027."
+            ivIconStatus.setImageResource(R.drawable.ic_warning)
+            ivIconStatus.setColorFilter(resources.getColor(android.R.color.holo_red_dark))
+
+            btnUnduh.isEnabled = false
+            btnUnduh.backgroundTintList = getColorStateList(android.R.color.darker_gray)
+
+            tvStatusLaporan.text = "Dokumen dalam tahap audit eksternal Kantor Akuntan Publik (KAP), estimasi rilis: Kuartal 1 Tahun 2027."
             tvStatusLaporan.setTextColor(resources.getColor(android.R.color.holo_red_dark))
         }
 

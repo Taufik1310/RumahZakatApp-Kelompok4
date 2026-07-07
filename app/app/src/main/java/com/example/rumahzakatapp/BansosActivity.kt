@@ -18,6 +18,8 @@ class BansosActivity : AppCompatActivity() {
         val etPendapatan = findViewById<EditText>(R.id.etPendapatanBansos)
         val btnAjukan = findViewById<Button>(R.id.btnAjukanBansos)
         val tvHasil = findViewById<TextView>(R.id.tvHasilBansos)
+        val ivIconHasil = findViewById<android.widget.ImageView>(R.id.ivIconHasilBansos)
+        ivIconHasil.visibility = android.view.View.VISIBLE
 
         val dbHelper = DatabaseHelper(this)
 
@@ -46,14 +48,14 @@ class BansosActivity : AppCompatActivity() {
 
             // IMPLEMENTASI EXCEPTIONAL & NORMAL FLOW (Sistem Screening)
             if (pendapatan > batasKemiskinan) {
-                // Exceptional Flow: Ditolak karena di atas standar
-                statusPengajuan = "Ditolak (Non-Desil 1)"
-                tvHasil.text = "❌ MAAF, PENGAJUAN DITOLAK\n\nBerdasarkan penilaian sistem, pendapatan Anda berada di atas garis prioritas. Saat ini kuota difokuskan untuk keluarga Desil 1 (Sangat Rentan)."
+                ivIconHasil.setImageResource(R.drawable.ic_cancel)
+                ivIconHasil.setColorFilter(resources.getColor(android.R.color.holo_red_dark))
+                tvHasil.text = "MAAF, PENGAJUAN DITOLAK\n\nBerdasarkan penilaian sistem, pendapatan Anda di atas garis prioritas. Kuota difokuskan untuk Desil 1."
                 tvHasil.setTextColor(resources.getColor(android.R.color.holo_red_dark))
             } else {
-                // Normal Flow: Diterima untuk diverifikasi lapangan
-                statusPengajuan = "Menunggu Verifikasi Lapangan"
-                tvHasil.text = "✅ PENGAJUAN DITERIMA AWAL\n\nData Anda lolos verifikasi sistem. Tim surveyor kami akan segera menghubungi Anda untuk pengecekan lapangan."
+                ivIconHasil.setImageResource(R.drawable.ic_check_circle)
+                ivIconHasil.setColorFilter(resources.getColor(R.color.orange_primary))
+                tvHasil.text = "PENGAJUAN DITERIMA AWAL\n\nData lolos verifikasi. Tim surveyor akan segera menghubungi Anda."
                 tvHasil.setTextColor(resources.getColor(R.color.orange_primary))
             }
 

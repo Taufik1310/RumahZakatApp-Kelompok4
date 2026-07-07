@@ -86,14 +86,27 @@
                 android:text="Kirim Pengajuan"
                 android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/tvHasilBansos"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_dark"/>
+                android:orientation="horizontal"
+                android:layout_marginTop="24dp">
+
+                <ImageView
+                    android:id="@+id/ivIconHasilBansos"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvHasilBansos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_dark"/>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
