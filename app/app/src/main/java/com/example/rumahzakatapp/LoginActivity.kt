@@ -34,6 +34,16 @@ class LoginActivity : AppCompatActivity() {
                 val isValid = dbHelper.checkUser(email, password)
                 if (isValid) {
                     Toast.makeText(this, "Login Berhasil", Toast.LENGTH_SHORT).show()
+
+                    // SIMPAN SESI PENGGUNA
+                    val namaUser = dbHelper.getUserName(email)
+                    val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+                    with (sharedPref.edit()) {
+                        putString("SESSION_EMAIL", email)
+                        putString("SESSION_NAMA", namaUser)
+                        apply()
+                    }
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()

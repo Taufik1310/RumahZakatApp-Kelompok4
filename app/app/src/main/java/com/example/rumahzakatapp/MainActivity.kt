@@ -3,6 +3,8 @@ package com.example.rumahzakatapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -12,32 +14,80 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val dbHelper = DatabaseHelper(this)
+        val sharedPref = getSharedPreferences("UserPrefs", MODE_PRIVATE)
+        val sessionEmail = sharedPref.getString("SESSION_EMAIL", "") ?: ""
+        val sessionNama = sharedPref.getString("SESSION_NAMA", "Donatur")
+
+        // Tampilkan Nama
+        val tvNama = findViewById<TextView>(R.id.tvNamaDashboard)
+        tvNama.text = sessionNama
+
+        // Tampilkan Total Donasi
+        val tvTotalDonasi = findViewById<TextView>(R.id.tvTotalDonasiDashboard)
+        val totalDonasi = dbHelper.getTotalDonasi(sessionEmail)
+
+        // Format ke Rupiah
+        val localeID = java.util.Locale("in", "ID")
+        val formatRupiah = java.text.NumberFormat.getCurrencyInstance(localeID)
+        tvTotalDonasi.text = formatRupiah.format(totalDonasi)
+
         // Binding Tombol di bagian "Akses Cepat"
         val btnDonasi = findViewById<Button>(R.id.btnMenuDonasi)
         val btnKurban = findViewById<Button>(R.id.btnMenuKurban)
         val btnZakat = findViewById<Button>(R.id.btnMenuZakat)
 
-        // Binding CardView "Tata Kelola Lembaga"
+        // Binding CardView "Tata Kelola Lembaga" (UC-05)
         val cvTataKelola = findViewById<CardView>(R.id.cvTataKelola)
 
-        // Mengarahkan tombol Infak Subuh ke form UC-01
+        // Binding Bottom Navigation
+        val navBeranda = findViewById<LinearLayout>(R.id.navBeranda)
+        val navDonasi = findViewById<LinearLayout>(R.id.navDonasi)
+        val navPenyaluran = findViewById<LinearLayout>(R.id.navPenyaluran)
+        val navProfil = findViewById<LinearLayout>(R.id.navProfil)
+
+        // ----------------------------------------------------
+        // FUNGSI KLIK MENU AKSES CEPAT
+        // ----------------------------------------------------
+
         btnDonasi.setOnClickListener {
-//            startActivity(Intent(this, DonasiActivity::class.java))
+            startActivity(Intent(this, DonasiActivity::class.java))
         }
 
-        // Mengarahkan tombol Kalkulator Zakat ke form UC-02
         btnZakat.setOnClickListener {
 //            startActivity(Intent(this, ZakatActivity::class.java))
         }
 
-        // Placeholder untuk UC-03 (Kurban)
         btnKurban.setOnClickListener {
-            Toast.makeText(this, "Fitur Pelacakan Superqurban (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fitur Superqurban (Segera Hadir)", Toast.LENGTH_SHORT).show()
         }
 
-        // Placeholder untuk UC-05 (Tata Kelola)
         cvTataKelola.setOnClickListener {
-            Toast.makeText(this, "Fitur Laporan Transparansi (Segera Hadir)", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Laporan Transparansi (Segera Hadir)", Toast.LENGTH_SHORT).show()
+        }
+
+        // ----------------------------------------------------
+        // FUNGSI KLIK BOTTOM NAVIGATION
+        // ----------------------------------------------------
+
+        navBeranda.setOnClickListener {
+            // Sudah berada di Beranda
+            Toast.makeText(this, "Anda sedang di halaman Beranda", Toast.LENGTH_SHORT).show()
+        }
+
+        navDonasi.setOnClickListener {
+            // Mengarahkan ke halaman daftar kampanye (UC-01)
+            startActivity(Intent(this, DonasiActivity::class.java))
+        }
+
+        navPenyaluran.setOnClickListener {
+            // Nanti akan mengarah ke UC-03 Pelacakan Penyaluran Kurban/Donasi
+            Toast.makeText(this, "Fitur Lacak Penyaluran (Segera Hadir)", Toast.LENGTH_SHORT).show()
+        }
+
+        navProfil.setOnClickListener {
+            // Nanti bisa untuk fitur Logout
+            Toast.makeText(this, "Fitur Profil Pengguna (Segera Hadir)", Toast.LENGTH_SHORT).show()
         }
     }
 }
