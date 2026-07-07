@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_light">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="16dp"
+        android:elevation="4dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/btnBackBansos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⬅"
+            android:textSize="24sp"
+            android:textColor="@color/text_dark"
+            android:layout_marginEnd="16dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pengajuan Bantuan Sosial"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_dark" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Form Verifikasi Mustahiq"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/orange_primary"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Data yang Anda masukkan akan disaring oleh sistem penilaian Desil Kemiskinan Nasional."
+                android:textSize="14sp"
+                android:textColor="@color/text_gray"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/etNikBansos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Nomor Induk Kependudukan (NIK)"
+                android:inputType="number"
+                android:padding="16dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/etPendapatanBansos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="Rata-rata Pendapatan per Bulan (Rp)"
+                android:inputType="number"
+                android:padding="16dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnAjukanBansos"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:backgroundTint="@color/orange_primary"
+                android:textColor="@color/white"
+                android:text="Kirim Pengajuan"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvHasilBansos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_dark"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

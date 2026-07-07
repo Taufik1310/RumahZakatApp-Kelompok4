@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         val btnDonasi = findViewById<Button>(R.id.btnMenuDonasi)
         val btnKurban = findViewById<Button>(R.id.btnMenuKurban)
         val btnZakat = findViewById<Button>(R.id.btnMenuZakat)
+        val btnBansos = findViewById<Button>(R.id.btnMenuBansos)
 
         // Binding CardView "Tata Kelola Lembaga" (UC-05)
         val cvTataKelola = findViewById<CardView>(R.id.cvTataKelola)
@@ -60,6 +61,10 @@ class MainActivity : AppCompatActivity() {
 
         btnKurban.setOnClickListener {
             startActivity(Intent(this, LacakKurbanActivity::class.java))
+        }
+
+        btnBansos.setOnClickListener {
+            startActivity(Intent(this, BansosActivity::class.java))
         }
 
         cvTataKelola.setOnClickListener {

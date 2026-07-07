@@ -282,6 +282,18 @@
                         app:icon="@drawable/ic_kalkulator"
                         app:iconTint="#00796B"
                         android:text="Kalkulator Zakat"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMenuBansos"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        app:strokeColor="#E0E0E0"
+                        android:textColor="@color/text_dark"
+                        app:icon="@drawable/ic_profil"
+                        app:iconTint="@color/text_dark"
+                        android:text="Pengajuan Bansos"/>
                 </LinearLayout>
             </HorizontalScrollView>
 

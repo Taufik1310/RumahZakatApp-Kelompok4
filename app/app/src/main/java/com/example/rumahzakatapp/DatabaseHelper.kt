@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_VERSION = 3 // Naikkan versi database
+        private const val DATABASE_VERSION = 4 // Naikkan versi database
         private const val DATABASE_NAME = "RumahZakat.db"
 
         // Tabel User
@@ -38,15 +38,22 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val COL_KURBAN_JENIS = "jenis_hewan" // Misal: "Kambing", "Sapi"
         private const val COL_KURBAN_PRODUK = "tipe_produk" // "Superqurban" / "Penebaran Langsung"
         private const val COL_KURBAN_STATUS = "status" // 1: Pengadaan, 2: Disembelih, 3: Dikirim
+
+        // Tabel Bansos (UC-04)
+        private const val TABLE_BANSOS = "tb_bansos"
+        private const val COL_BANSOS_ID = "bansos_id"
+        private const val COL_BANSOS_EMAIL = "email_user"
+        private const val COL_BANSOS_NIK = "nik"
+        private const val COL_BANSOS_PENDAPATAN = "pendapatan"
+        private const val COL_BANSOS_STATUS = "status_pengajuan" // "Diterima" / "Ditolak"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("CREATE TABLE $TABLE_USER ($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COLUMN_NAMA TEXT, $COLUMN_EMAIL TEXT, $COLUMN_PASSWORD TEXT)")
         db.execSQL("CREATE TABLE $TABLE_DONASI (donasi_id INTEGER PRIMARY KEY AUTOINCREMENT, $COL_DONASI_EMAIL TEXT, $COL_DONASI_KAMPANYE TEXT, $COL_DONASI_NOMINAL REAL, $COL_DONASI_ANONIM INTEGER)")
         db.execSQL("CREATE TABLE $TABLE_ZAKAT (zakat_id INTEGER PRIMARY KEY AUTOINCREMENT, $COL_ZAKAT_EMAIL TEXT, $COL_ZAKAT_PENGHASILAN REAL, $COL_ZAKAT_NOMINAL REAL)")
-
-        // Buat Tabel Kurban
         db.execSQL("CREATE TABLE $TABLE_KURBAN ($COL_KURBAN_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_KURBAN_EMAIL TEXT, $COL_KURBAN_JENIS TEXT, $COL_KURBAN_PRODUK TEXT, $COL_KURBAN_STATUS INTEGER)")
+        db.execSQL("CREATE TABLE $TABLE_BANSOS ($COL_BANSOS_ID INTEGER PRIMARY KEY AUTOINCREMENT, $COL_BANSOS_EMAIL TEXT, $COL_BANSOS_NIK TEXT, $COL_BANSOS_PENDAPATAN REAL, $COL_BANSOS_STATUS TEXT)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -105,5 +112,16 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
             db.insert(TABLE_KURBAN, null, cv2)
         }
         cursor.close()
+    }
+
+    // --- FUNGSI UC-04 (BANSOS) ---
+    fun insertBansos(email: String, nik: String, pendapatan: Double, status: String): Boolean {
+        val cv = ContentValues().apply {
+            put(COL_BANSOS_EMAIL, email)
+            put(COL_BANSOS_NIK, nik)
+            put(COL_BANSOS_PENDAPATAN, pendapatan)
+            put(COL_BANSOS_STATUS, status)
+        }
+        return this.writableDatabase.insert(TABLE_BANSOS, null, cv) != -1L
     }
 }

@@ -28,6 +28,7 @@
         <activity android:name=".ZakatActivity" />
         <activity android:name=".LacakKurbanActivity" />
         <activity android:name=".DetailKurbanActivity" />
+        <activity android:name=".BansosActivity" />
     </application>
 
 </manifest>
