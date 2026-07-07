@@ -1,75 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
+    android:fillViewport="true"
     android:background="@color/bg_light">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rumah Zakat"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:textColor="@color/orange_primary"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Silakan Login untuk Melanjutkan"
-        android:textColor="@color/text_gray"
-        android:layout_marginBottom="32dp"/>
-
-    <EditText
-        android:id="@+id/etEmailLogin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:padding="16dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="16dp"/>
-
-    <EditText
-        android:id="@+id/etPasswordLogin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="16dp"
-        android:background="@android:drawable/edit_text"
-        android:layout_marginBottom="24dp"/>
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Login"
-        android:backgroundTint="@color/orange_primary"
-        android:textColor="@color/white"
-        android:textSize="16sp"/>
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_donasi"
+            app:tint="@color/orange_primary"
+            android:background="@drawable/ic_launcher_background"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="32dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Belum punya akun? "
+            android:text="Selamat Datang"
+            android:textSize="28sp"
+            android:textStyle="bold"
             android:textColor="@color/text_dark"/>
 
         <TextView
-            android:id="@+id/tvGoToRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daftar di sini"
-            android:textStyle="bold"
-            android:textColor="@color/orange_primary"/>
+            android:text="Masuk untuk melanjutkan kebersihan harta Anda."
+            android:textColor="@color/text_gray"
+            android:textAlignment="center"
+            android:layout_marginBottom="32dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white"
+            android:layout_marginBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Alamat Email"
+                    app:startIconDrawable="@drawable/ic_email"
+                    app:startIconTint="@color/orange_primary"
+                    app:boxStrokeColor="@color/orange_primary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etEmailLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Kata Sandi"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    app:startIconTint="@color/orange_primary"
+                    app:endIconMode="password_toggle"
+                    app:endIconTint="@color/text_gray"
+                    app:boxStrokeColor="@color/orange_primary"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etPasswordLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="12dp"
+                    android:text="Lupa Sandi?"
+                    android:textStyle="bold"
+                    android:textColor="@color/orange_primary"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Masuk Sekarang"
+            app:cornerRadius="12dp"
+            android:backgroundTint="@color/orange_primary"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum punya akun? "
+                android:textColor="@color/text_dark"/>
+
+            <TextView
+                android:id="@+id/tvGoToRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar di sini"
+                android:textStyle="bold"
+                android:textColor="@color/orange_primary"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
