@@ -37,15 +37,38 @@
                 android:textStyle="bold"
                 android:textColor="@color/text_dark"/>
 
-            <TextView
-                android:id="@+id/tvTargetDana"
-                android:layout_width="wrap_content"
+            <!-- Progress Bar (Normal Flow 5) -->
+            <ProgressBar
+                android:id="@+id/pbKampanye"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Target: Rp 0"
-                android:textColor="@color/orange_primary"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_marginTop="4dp"/>
+                android:layout_marginTop="8dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="@color/orange_primary"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp">
+                <TextView
+                    android:id="@+id/tvTerkumpulDana"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terkumpul: Rp0"
+                    android:textSize="12sp"
+                    android:textColor="@color/orange_primary"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/tvSisaTarget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Target: Rp0"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_gray"/>
+            </RelativeLayout>
 
             <Button
                 android:layout_width="match_parent"
