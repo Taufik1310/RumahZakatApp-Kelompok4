@@ -18,7 +18,7 @@
             android:layout_height="80dp"
             android:src="@drawable/ic_donasi"
             app:tint="@color/orange_primary"
-            android:background="@drawable/ic_launcher_background"
+            android:background="@color/white"
             android:padding="16dp"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="32dp"/>
