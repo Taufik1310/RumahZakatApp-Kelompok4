@@ -1,104 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_light">
 
     <!-- Header -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        android:padding="16dp"
-        android:elevation="4dp"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/btnBackZakat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="⬅"
-            android:textSize="24sp"
-            android:textColor="@color/text_dark"
-            android:layout_marginEnd="16dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kalkulator Zakat"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/text_dark" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:background="@color/white" android:padding="16dp" android:elevation="4dp" android:gravity="center_vertical">
+        <TextView android:id="@+id/btnBackZakat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⬅" android:textSize="24sp" android:textColor="@color/text_dark" android:layout_marginEnd="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pembayaran Zakat" android:textSize="18sp" android:textStyle="bold" android:textColor="@color/text_dark" />
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="24dp">
+            <!-- ALTERNATE FLOW 2A: Pilihan Mode Zakat -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Metode Perhitungan" android:textStyle="bold" android:textColor="@color/text_dark" android:layout_marginBottom="8dp"/>
+            <RadioGroup android:id="@+id/rgModeZakat" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="16dp">
+                <RadioButton android:id="@+id/rbKalkulator" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Gunakan Kalkulator" android:buttonTint="@color/orange_primary" android:checked="true"/>
+                <RadioButton android:id="@+id/rbManual" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Input Langsung" android:buttonTint="@color/orange_primary"/>
+            </RadioGroup>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Hitung Zakat Penghasilan"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/orange_primary"
-                android:layout_marginBottom="8dp"/>
+            <!-- NORMAL FLOW 2: Pilihan Jenis Zakat -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Pilih Jenis Zakat" android:textStyle="bold" android:textColor="@color/text_dark" android:layout_marginBottom="8dp"/>
+            <Spinner android:id="@+id/spinnerJenisZakat" android:layout_width="match_parent" android:layout_height="50dp" android:background="@android:drawable/edit_text" android:layout_marginBottom="16dp" android:entries="@array/jenis_zakat_array"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Masukkan total pendapatan kotor Anda per bulan untuk mengetahui kewajiban zakat (2,5%)."
-                android:textSize="14sp"
-                android:textColor="@color/text_gray"
-                android:layout_marginBottom="24dp"/>
+            <!-- Area Kalkulator (Bisa disembunyikan jika pilih Manual) -->
+            <LinearLayout android:id="@+id/layoutKalkulator" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Total Harta / Penghasilan per Bulan" android:textColor="@color/text_dark" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+                <EditText android:id="@+id/etHartaZakat" android:layout_width="match_parent" android:layout_height="60dp" android:hint="Contoh: 8000000" android:inputType="number" android:padding="16dp" android:background="@android:drawable/edit_text" android:layout_marginBottom="12dp"/>
 
-            <EditText
-                android:id="@+id/etPenghasilanZakat"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="Contoh: 8000000"
-                android:inputType="number"
-                android:padding="16dp"
-                android:background="@android:drawable/edit_text"
-                android:layout_marginBottom="16dp"/>
+                <!-- Peringatan Nishab (Exceptional Flow 3E) -->
+                <TextView android:id="@+id/tvPeringatanNishab" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Harta Anda belum mencapai Nishab wajib Zakat. Namun, Anda tetap dapat menyalurkannya sebagai Infak/Sedekah." android:textColor="@color/error_red" android:textSize="12sp" android:layout_marginBottom="12dp" android:visibility="gone"/>
+            </LinearLayout>
 
-            <Button
-                android:id="@+id/btnHitungZakat"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/white"
-                android:textColor="@color/orange_primary"
-                android:text="Hitung Kewajiban"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp"/>
+            <!-- Area Input Manual (Alternate Flow 2A) -->
+            <LinearLayout android:id="@+id/layoutManual" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Nominal Zakat (Input Bebas)" android:textColor="@color/text_dark" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+                <EditText android:id="@+id/etNominalManual" android:layout_width="match_parent" android:layout_height="60dp" android:hint="Contoh: 250000" android:inputType="number" android:padding="16dp" android:background="@android:drawable/edit_text" android:layout_marginBottom="12dp"/>
+            </LinearLayout>
 
-            <!-- Area Hasil Perhitungan -->
-            <TextView
-                android:id="@+id/tvHasilZakat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="16sp"
-                android:textColor="@color/text_dark"
-                android:layout_marginBottom="24dp"/>
+            <!-- Hasil Perhitungan (Ditampilkan jika lulus Nishab atau mode manual) -->
+            <androidx.cardview.widget.CardView android:layout_width="match_parent" android:layout_height="wrap_content" app:cardBackgroundColor="#E0F2F1" app:cardCornerRadius="8dp" app:cardElevation="0dp" android:layout_marginBottom="24dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:gravity="center">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Zakat Wajib Anda" android:textColor="#00796B"/>
+                    <TextView android:id="@+id/tvHasilNominalZakat" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rp0" android:textSize="24sp" android:textStyle="bold" android:textColor="#004D40"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-            <!-- Tombol Tunaikan (Hanya muncul jika >= Nishab) -->
-            <Button
-                android:id="@+id/btnTunaikanZakat"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:backgroundTint="@color/orange_primary"
-                android:textColor="@color/white"
-                android:text="Tunaikan Zakat Sekarang"
-                android:textStyle="bold"
-                android:visibility="gone"/>
+            <!-- Metode Pembayaran -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pilih Metode Pembayaran" android:textColor="@color/text_dark" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+            <RadioGroup android:id="@+id/rgMetodeZakat" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="24dp">
+                <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:text="BSI Virtual Account" android:buttonTint="@color/orange_primary" android:checked="true"/>
+                <RadioButton android:layout_width="match_parent" android:layout_height="wrap_content" android:text="ShopeePay / GoPay" android:buttonTint="@color/orange_primary"/>
+            </RadioGroup>
+
+            <!-- Tombol Tunaikan -->
+            <Button android:id="@+id/btnTunaikanZakat" android:layout_width="match_parent" android:layout_height="60dp" android:text="Tunaikan Zakat" android:backgroundTint="@color/orange_primary" android:textColor="@color/white" android:textStyle="bold" android:enabled="false"/>
 
         </LinearLayout>
     </ScrollView>

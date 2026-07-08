@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">RumahZakatApp</string>
+
+    <string-array name="jenis_zakat_array">
+        <item>Zakat Penghasilan (2,5%)</item>
+        <item>Zakat Maal / Harta (2,5%)</item>
+        <item>Zakat Fitrah</item>
+    </string-array>
 </resources>
+
