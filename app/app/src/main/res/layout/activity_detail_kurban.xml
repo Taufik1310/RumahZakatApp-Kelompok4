@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/white">
 
@@ -13,22 +13,8 @@
         android:padding="20dp"
         android:background="#FFF5ED">
 
-        <TextView
-            android:id="@+id/tvDetailJenis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jenis Hewan"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/orange_primary"/>
-
-        <TextView
-            android:id="@+id/tvDetailTipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tipe Produk"
-            android:textColor="@color/text_gray"
-            android:layout_marginTop="4dp"/>
+        <TextView android:id="@+id/tvDetailJenis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jenis Hewan" android:textSize="20sp" android:textStyle="bold" android:textColor="@color/orange_primary"/>
+        <TextView android:id="@+id/tvDetailTipe" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tipe Produk" android:textColor="@color/text_gray" android:layout_marginTop="4dp"/>
     </LinearLayout>
 
     <ScrollView
@@ -41,26 +27,38 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Tahap 1: Pengadaan -->
+            <!-- Tahap 1: Pengadaan (Normal Flow 4) -->
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
                 <ImageView android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_check_circle" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 1: Pengadaan &amp; Kesehatan" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
             </LinearLayout>
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hewan kurban telah lolos uji dokter hewan dan berada di kandang." android:textColor="@color/text_gray" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Hewan kurban telah lolos pemeriksaan kesehatan veteriner dan detail lokasi penempatan hewan telah dikonfirmasi." android:textColor="@color/text_gray" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
 
-            <!-- Tahap 2: Penyembelihan -->
+            <!-- Tahap 2: Penyembelihan (Normal Flow 5 & Exc 5E) -->
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
                 <ImageView android:id="@+id/ivIconTahap2" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_pending" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
                 <TextView android:id="@+id/tvStatusTahap2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 2: Proses Penyembelihan" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
             </LinearLayout>
             <TextView android:id="@+id/tvPesanDokumentasi" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
 
-            <!-- Tahap 3: Logistik / Penebaran -->
+            <!-- Tahap 3: Logistik / Penebaran (Normal Flow 6, Alt 6A, Exc 6E) -->
             <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
                 <ImageView android:id="@+id/ivIconTahap3" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_kurban" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
                 <TextView android:id="@+id/tvStatusTahap3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 3: Pelacakan Logistik" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
             </LinearLayout>
             <TextView android:id="@+id/tvPesanLogistik" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="24dp"/>
+
+            <!-- Tahap 4: Selesai & Sertifikat (Normal Flow 8, 9 & Exc 9E) -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+                <ImageView android:id="@+id/ivIconTahap4" android:layout_width="20dp" android:layout_height="20dp" android:src="@drawable/ic_pending" app:tint="@color/text_dark" android:layout_marginEnd="8dp"/>
+                <TextView android:id="@+id/tvStatusTahap4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tahap 4: Status Selesai" android:textStyle="bold" android:textColor="@color/text_dark" android:textSize="16sp"/>
+            </LinearLayout>
+
+            <TextView android:id="@+id/tvPesanSertifikat" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Sertifikat digital belum tersedia." android:layout_marginStart="28dp" android:layout_marginTop="4dp" android:layout_marginBottom="12dp" android:textColor="@color/text_gray"/>
+
+            <Button android:id="@+id/btnUnduhSertifikat" android:layout_width="match_parent" android:layout_height="50dp" android:text="Unduh Sertifikat Kurban" android:backgroundTint="@color/orange_primary" android:textColor="@color/white" android:layout_marginStart="28dp" android:layout_marginBottom="8dp" android:visibility="gone"/>
+
+            <Button android:id="@+id/btnKirimWA" android:layout_width="match_parent" android:layout_height="50dp" android:text="Kirim Sertifikat ke WhatsApp" android:backgroundTint="#25D366" android:textColor="@color/white" android:layout_marginStart="28dp" android:layout_marginBottom="24dp" android:visibility="gone" app:icon="@drawable/ic_check_circle" app:iconGravity="textStart"/>
 
         </LinearLayout>
     </ScrollView>
