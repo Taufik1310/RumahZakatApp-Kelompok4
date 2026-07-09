@@ -25,14 +25,14 @@ Sebuah aplikasi berbasis Android Native yang dikembangkan untuk memenuhi tugas m
 Berikut adalah antarmuka *Super-App* yang telah kami kembangkan menggunakan Android Material Design:
 
 <div align="center">
-  <img src="image/image1.jpg" alt="Halaman Beranda & Dashboard" width="250"/>
+  <img src="image/image1.png" alt="Halaman Beranda & Dashboard" width="250"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="image/image2.jpg" alt="Halaman Kampanye Infak" width="250"/>
+  <img src="image/image2.png" alt="Halaman Kampanye Infak" width="250"/>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="image/image3.jpg" alt="Halaman Kalkulator Zakat & Pajak" width="250"/>
-  <img src="image/image4.jpg" alt="Halaman Detail Pelacakan Kurban" width="250"/>
-  <img src="image/image5.jpg" alt="Halaman Pengajuan Bansos" width="250"/>
-  <img src="image/image5.jpg" alt="Halaman Laporan & Audit Trail" width="250"/>
+  <img src="image/image3.png" alt="Halaman Kalkulator Zakat & Pajak" width="250"/>
+  <img src="image/image4.png" alt="Halaman Detail Pelacakan Kurban" width="250"/>
+  <img src="image/image5.png" alt="Halaman Pengajuan Bansos" width="250"/>
+  <img src="image/image5.png" alt="Halaman Laporan & Audit Trail" width="250"/>
 </div>
 
 ---
