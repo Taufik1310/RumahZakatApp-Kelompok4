@@ -32,7 +32,7 @@ Berikut adalah antarmuka *Super-App* yang telah kami kembangkan menggunakan Andr
   <img src="image/image3.png" alt="Halaman Kalkulator Zakat & Pajak" width="250"/>
   <img src="image/image4.png" alt="Halaman Detail Pelacakan Kurban" width="250"/>
   <img src="image/image5.png" alt="Halaman Pengajuan Bansos" width="250"/>
-  <img src="image/image5.png" alt="Halaman Laporan & Audit Trail" width="250"/>
+  <img src="image/image6.png" alt="Halaman Laporan & Audit Trail" width="250"/>
 </div>
 
 ---
