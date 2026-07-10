@@ -16,7 +16,7 @@ Sebuah aplikasi berbasis Android Native yang dikembangkan untuk memenuhi tugas m
 
 ## 🎥 Video Penjelasan Proyek
 
-🔗 **[Tonton Video Presentasi Kelompok 4 (Klik di Sini)](#)**
+🔗 **[https://youtu.be/1fhKXXst9Zk)](https://youtu.be/1fhKXXst9Zk)**
 
 ---
 
