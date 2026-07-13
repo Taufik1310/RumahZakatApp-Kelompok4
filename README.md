@@ -2,7 +2,7 @@
 
 Sebuah aplikasi berbasis Android Native yang dikembangkan untuk memenuhi tugas mata kuliah **Pemrograman Mobile 1** di **Universitas Teknologi Bandung (UTB)**. Aplikasi ini mendigitalkan proses penghimpunan dana Ziswaf (Zakat, Infak, Sedekah, Wakaf), pelacakan distribusi kurban, hingga pengajuan bantuan sosial (Bansos) dengan sistem verifikasi mandiri.
 
----
+-----------------------------------------
 
 ## 👥 Tim Pengembang (Kelompok 4)
 
